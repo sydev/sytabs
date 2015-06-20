@@ -1,0 +1,258 @@
+<!doctype html>
+<html ng-app="syTabsDemo">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="description" content="syTabs - a simple and lightweight angular tab directive">
+		<meta name="author" content="Dominik Winter">
+		<meta name="keyword" content="angular, tab, directive, tabs, angularjs, bootstrap">
+		<title>syTabs - a simple and lightweight angular tab directive</title>
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<style>
+			html, body {
+				min-height: 100%;
+			}
+			.btn.active {
+				color: #333;
+				background-color: #E6E6E6;
+				border-color: #ADADAD;
+			}
+			.tab-content {
+				position: relative;
+			}
+			.tab-pane {
+				width: 100%;
+				padding: 15px;
+				position: absolute;
+				z-index: 1;
+			}
+			.tab-pane.hidden, .tab-pane:not(.in) {
+				z-index: 0;
+			}
+			/* code formatting */
+			pre {
+				white-space: pre-wrap;
+			}
+			/* code colors */
+			.nt {
+    		color: #2F6F9F;
+    	}
+    	.na {
+    		color: #4F9FCF;
+			}
+			.s {
+		    color: #D44950;
+			}
+			.s1 {
+    		color: #C30;
+			}
+			.c {
+    		color: #999;
+			}
+			.kc {
+    		color: #069;
+			}
+			.nc {
+    		color: #0A8;
+			}
+			.nl {
+    		color: #99F;
+			}
+			.nb {
+    		color: #366;
+			}
+			.m {
+    		color: #F60;
+			}
+			.nf {
+    		color: #C0F;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default">
+  		<div class="container">
+    		<div class="navbar-header">
+		      <span class="navbar-brand">syTabs</span>
+		    </div>
+		    <div class="collapse navbar-collapse">
+		    	<ul class="nav navbar-nav navbar-right">
+        		<li><a href="https://sydev.de">Developed with &hearts; by syDev</a></li>
+        	</ul>
+		    </div>
+		  </div>
+		</nav>
+		<div class="container" ng-init="a = true; j = true; s = true; sh = 400">
+			<div class="row">
+				<div class="col-xs-12 col-md-3">
+					<p><button class="btn btn-default" ng-click="a = !a">Toggle Animated</button></p>
+					<p><button class="btn btn-default" ng-click="j = !j">Toggle Justifed</button></p>
+					<p><button class="btn btn-default" ng-click="s = !s">Toggle Scrollable</button></p>
+					<p>Scrollable Height:</p>
+					<p>
+						<div class="btn-group" data-toggle="buttons">
+						  <label class="btn btn-default" ng-class="{active: sh == 300}" ng-click="sh = 300">
+						    <input type="checkbox" autocomplete="off" ng-checked="sh == 300"> 300
+						  </label>
+						  <label class="btn btn-default" ng-class="{active: sh == 400}" ng-click="sh = 400">
+						    <input type="checkbox" autocomplete="off" ng-checked="sh == 400"> 400
+						  </label>
+						  <label class="btn btn-default" ng-class="{active: sh == 500}" ng-click="sh = 500">
+						    <input type="checkbox" autocomplete="off" ng-checked="sh == 500"> 500
+						  </label>
+						</div>
+					</p>
+					<pre>{
+  animated: {{a}},
+  justified: {{j}},
+  scrollable: {{s}},
+  scrollable-height: {{sh}}
+}</pre>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<sy-tabs animated="a" justified="j" scrollable="s" scrollable-height="{{sh}}">
+						<sy-pane title="Info">
+							<p>You may now go to <sy-tab-link pane="1"></sy-tab-link>, to learn more about syTabs.</p>
+							<p>Developed with &hearts; by <a href="https://sydev.de">syDev</a>.</p>
+						</sy-pane>
+						<sy-pane title="Installation">
+							<p>Download <a href="sy-tab.js">sy-tabs.js</a> (only 2.39 KB) or <a href="sytabs.zip">download the whole project</a> (includes this demo), and implement it in your application like this:</p>
+							<span>index.html</span>
+							<pre><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">"path/to/sy-tabs.js"</span><span class="nt">&gt;&lt;/script&gt;</span></pre>
+							<span>app.js</span>
+							<pre>angular.module(<span class="s1">'yourApp'</span>, [<span class="s1">'sy.tabs'</span>]);</pre>
+							<p>Now you can use syTabs in your HTML. To know how, go to <sy-tab-link pane="2"></sy-tab-link>.</p>
+						</sy-pane>
+						<sy-pane title="Usage">
+							<p>To use syTabs, insert something like this in your HTML:</p>
+							<pre><span class="nt">&lt;sy-tabs&gt;</span>
+  <span class="nt">&lt;sy-pane</span> <span class="na">title=</span><span class="s">"Pane 1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Lorem Ipsum...<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/sy-pane&gt;</span>
+  <span class="nt">&lt;sy-pane</span> <span class="na">title=</span><span class="s">"Pane 2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Lorem Ipsum...<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/sy-pane&gt;</span>
+  ...
+<span class="nt">&lt;/sy-tabs&gt;</span></pre>
+							<p>CSS:</p>
+							<pre><span class="nc">.tab-content</span> {
+  <span class="nl">position</span>: <span class="nb">relative</span>;
+}
+<span class="nc">.tab-pane</span> {
+  <span class="nl">width</span>: <span class="m">100%</span>;
+  <span class="nl">padding</span>: <span class="m">15px</span>;
+  <span class="nl">position</span>: <span class="nb">absolute</span>;
+  <span class="nl">z-index</span>: <span class="m">1</span>;
+}
+<span class="nc">.tab-pane.hidden, .tab-pane:not(.in)</span> {
+  <span class="nl">z-index</span>: <span class="m">0</span>;
+}</pre>
+							<p>And now, the Party can begin.<br/>You should see something like this tabbed element.</p>
+							<p>Have a look at other <sy-tab-link pane="3"></sy-tab-link>.</p>
+						</sy-pane>
+						<sy-pane title="Features">
+							<p>There is a little feature, that i don't wanna deprive: <b>syTabLink</b>.</p>
+							<p>With this directive you can set links anywhere in your panes and go to another pane. Just like magic.</p>
+							<p>To implement these links add something like this to your HTML:</p>
+							<pre><span class="nt">&lt;sy-tabs&gt;</span>
+  <span class="nt">&lt;sy-pane</span> <span class="na">title=</span><span class="s">"Pane 1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      ...
+      <span class="nt">&lt;sy-tab-link</span> <span class="na">pane=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+      ...
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/sy-pane&gt;</span>
+  ...
+<span class="nt">&lt;/sy-tabs&gt;</span></pre>
+						<p>The value of the "pane"-attribute is the zero-based-index of all panes. So with "1" we shall go to "Pane 2".</p>
+						<p>You can set any pane-index as value, so you can also go back or skip two panes, no problem.</p>
+						</sy-pane>
+						<sy-pane title="Options">
+							<h4>sy-tabs</h4>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<th>Name</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th>Description</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>animated</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>Apply a CSS fade transition to the tab panes.</td>
+									</tr>
+									<tr>
+										<td>justified</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>Make the tabs stretch at equal sizes to span the entire width.</td>
+									</tr>
+									<tr>
+										<td>scrollable</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>Make the tab content scrollable if specific height is exceeded. See <b>scrollable-height</b>.</td>
+									</tr>
+									<tr>
+										<td>scrollable-height</td>
+										<td>integer</td>
+										<td>300</td>
+										<td>Set the max-height-breakpoint for scrollable content. The unit is 'px'.</td>
+									</tr>
+								</tbody>
+							</table>
+							<h4>sy-pane</h4>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<th>Name</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th>Description</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>title</td>
+										<td>string</td>
+										<td>'Pane'</td>
+										<td>Set the title for this pane.</td>
+									</tr>
+								</tbody>
+							</table>
+							<h4>sy-tab-link</h4>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<th>Name</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th>Description</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>pane</td>
+										<td>integer</td>
+										<td>0</td>
+										<td>Set the target-pane for the link. The value is the zero-besed-index of all panes.</td>
+									</tr>
+								</tbody>
+							</table>
+							<p>Here we´re done. I hope you´ll enjoy my little directive. You can visit my website <a href="https://sydev.de">sydev.de</a>, maybe there is another project, which is interesting.</p>
+							<p>Hopefully see you soon.</p>
+						</sy-pane>
+					</sy-tabs>
+				</div>
+			</div>
+		</div>
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+
+		<script src="sy-tabs.js"></script>
+		<script>angular.module('syTabsDemo', ['sy.tabs']);</script>
+	</body>
+
+</html>
