@@ -66,6 +66,7 @@ You can use icons in the tabs too. Just add the "icon"-attribute to the pane lik
   </sy-pane>
   ...
 </sy-tabs>
+```
 
 #### syPaneLink
 
@@ -144,8 +145,15 @@ You can set any pane-index as value, so you can also go back or skip two panes, 
       <td>'Pane'</td>
       <td>Set the title for this pane.</td>
     </tr>
+    <tr>
+      <td>icon</td>
+      <td>string</td>
+      <td>none</td>
+      <td>Set the icon next to the title of this pane</td>
+    </tr>
   </tbody>
 </table>
+
 #### sy-pane-link
 <table class="table table-bordered table-striped">
   <thead>
