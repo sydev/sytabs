@@ -9,7 +9,7 @@ angular.module('sy.tabs', [])
       animated: '=',
       justified: '=',
       scrollable: '=',
-      scrollableHeight: '@'
+      scrollableHeight: '='
     },
 		controller: ['$scope', function($scope) {
       var panes = this.panes = $scope.panes = [];
@@ -40,7 +40,17 @@ angular.module('sy.tabs', [])
         panes.push(pane);
       };
     }],
-    template: '<div class="tabbable"><ul class="nav nav-tabs" ng-class="{\'nav-justified\': justified}"><li ng-repeat="pane in panes" ng-class="{active: pane.selected}"><a href="" ng-click="select(pane)">{{pane.title}}</a></li></ul><div class="tab-content" ng-transclude></div></div>'
+    template: '<div class="tabbable">'+
+                '<ul class="nav nav-tabs" ng-class="{\'nav-justified\': justified}">'+
+                  '<li ng-repeat="pane in panes" ng-class="{active: pane.selected}">'+
+                    '<a href="" ng-click="select(pane)">'+
+                      '{{pane.title}} '+
+                      '<span ng-if="pane.icon" ng-class="pane.icon"></span>'+
+                    '</a>'+
+                  '</li>'+
+                '</ul>'+
+                '<div class="tab-content" ng-transclude></div>'+
+              '</div>'
 	};
 }]).directive('syPane', [function() {
   return {
@@ -48,11 +58,13 @@ angular.module('sy.tabs', [])
     restrict: 'E',
     transclude: true,
     scope: {
-      title: '@'
+      title: '@',
+      icon: '@'
     },
     link: function(scope, ele, attrs, tabsCtrl) {
       if (angular.isUndefined(scope.title)) scope.title = 'Pane';
-      
+      if (angular.isUndefined(scope.icon)) scope.icon = false;
+
       tabsCtrl.addPane(scope);
 
       function setAnim(bool) {
@@ -79,7 +91,7 @@ angular.module('sy.tabs', [])
     template: '<div class="tab-pane fade" ng-class="{fade: anim, in: selected, hidden: !anim && !selected}" ng-transclude></div>'
   };
 }])
-.directive('syTabLink', [function() {
+.directive('syPaneLink', [function() {
   return {
     require: '^syTabs',
     restrict: 'E',

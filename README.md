@@ -56,7 +56,20 @@ For optimal experience with this directive you should add following rules to you
 
 ## Features
 
-There is a little feature, that i don't wanna deprive: syTabLink.
+#### Icons 
+
+You can use icons in the tabs too. Just add the "icon"-attribute to the pane like:
+```html
+<sy-tabs>
+  <sy-pane title="Pane 1" icon="glyphicon glyphicon-star">
+    ...
+  </sy-pane>
+  ...
+</sy-tabs>
+
+#### syPaneLink
+
+There is a little feature, that i don't wanna deprive: syPaneLink.
 
 With this directive you can set links anywhere in your panes and go to another pane. Just like magic.
 
@@ -66,7 +79,7 @@ To implement these links add something like this to your HTML:
   <sy-pane title="Pane 1">
     <p>
       ...
-      <sy-tab-link pane="1">
+      <sy-pane-link pane="1">
       ...
     </p>
   </sy-pane>
@@ -133,7 +146,7 @@ You can set any pane-index as value, so you can also go back or skip two panes, 
     </tr>
   </tbody>
 </table>
-#### sy-tab-link
+#### sy-pane-link
 <table class="table table-bordered table-striped">
   <thead>
     <th>Name</th>
