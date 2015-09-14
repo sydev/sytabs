@@ -10,7 +10,7 @@
 		<meta name="keyword" content="angular, tab, directive, tabs, angularjs, bootstrap">
 		<title>syTabs - a simple angular tab directive</title>
 
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<style>
 			html, body {
 				min-height: 100%;
@@ -73,7 +73,7 @@
 		</style>
 	</head>
 
-	<body>
+	<body ng-controller="demoCtrl" ng-cloak>
 		<nav class="navbar navbar-default">
   		<div class="container">
     		<div class="navbar-header">
@@ -86,38 +86,34 @@
 		    </div>
 		  </div>
 		</nav>
-		<div class="container" ng-init="a = true; j = true; s = true; sh = 400">
+		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-md-3">
-					<p><button class="btn btn-default" ng-click="a = !a">Toggle Animated</button></p>
-					<p><button class="btn btn-default" ng-click="j = !j">Toggle Justifed</button></p>
-					<p><button class="btn btn-default" ng-click="s = !s">Toggle Scrollable</button></p>
+					<p><button class="btn btn-default" ng-click="demo.animated = !demo.animated">Toggle Animated</button></p>
+					<p><button class="btn btn-default" ng-click="demo.justified = !demo.justified">Toggle Justifed</button></p>
+					<p><button class="btn btn-default" ng-click="demo.scrollable = !demo.scrollable">Toggle Scrollable</button></p>
 					<p>Scrollable Height:</p>
 					<p>
 						<div class="btn-group" data-toggle="buttons">
-						  <label class="btn btn-default" ng-class="{active: sh == 300}" ng-click="sh = 300">
-						    <input type="checkbox" autocomplete="off" ng-checked="sh == 300"> 300
+						  <label class="btn btn-default" ng-class="{active: demo.scrollableHeight == 300}" ng-click="demo.scrollableHeight = 300">
+						    <input type="checkbox" autocomplete="off" ng-checked="demo.scrollableHeight == 300"> 300
 						  </label>
-						  <label class="btn btn-default" ng-class="{active: sh == 400}" ng-click="sh = 400">
-						    <input type="checkbox" autocomplete="off" ng-checked="sh == 400"> 400
+						  <label class="btn btn-default" ng-class="{active: demo.scrollableHeight == 400}" ng-click="demo.scrollableHeight = 400">
+						    <input type="checkbox" autocomplete="off" ng-checked="demo.scrollableHeight == 400"> 400
 						  </label>
-						  <label class="btn btn-default" ng-class="{active: sh == 500}" ng-click="sh = 500">
-						    <input type="checkbox" autocomplete="off" ng-checked="sh == 500"> 500
+						  <label class="btn btn-default" ng-class="{active: demo.scrollableHeight == 500}" ng-click="demo.scrollableHeight = 500">
+						    <input type="checkbox" autocomplete="off" ng-checked="demo.scrollableHeight == 500"> 500
 						  </label>
 						</div>
 					</p>
-					<pre>{
-  animated: {{a}},
-  justified: {{j}},
-  scrollable: {{s}},
-  scrollable-height: {{sh}}
-}</pre>
+					<pre>{{demo | json}}</pre>
 				</div>
 				<div class="col-xs-12 col-md-6">
-					<sy-tabs animated="a" justified="j" scrollable="s" scrollable-height="{{sh}}">
+					<sy-tabs animated="demo.animated" justified="demo.justified" scrollable="demo.scrollable" scrollable-height="demo.scrollableHeight">
 						<sy-pane title="Info">
-							<p>You may now go to <sy-tab-link pane="1"></sy-tab-link>, to learn more about syTabs.</p>
-							<p>Developed with &hearts; by <a href="https://sydev.de">syDev</a>.</p>
+							<p>syTabs is a simple and lightweight <a href="http://angularjs.org" target="_blank">AngularJs</a> tab directive working with <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>. And these are the only dependencies you need. Awesome.</p>
+							<p>You wanna see a live demo? I´ll tell you something: You already found it. Yeah, you´re right: THIS is the demo.</p>
+							<p>You may now go to <sy-pane-link pane="1"></sy-pane-link>, to learn more about syTabs.</p>
 						</sy-pane>
 						<sy-pane title="Installation">
 							<p>Download the project <a href="https://github.com/sydev/sytabs">here</a> and implement it in your application like this:</p>
@@ -125,7 +121,7 @@
 							<pre><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">"path/to/sy-tabs.js"</span><span class="nt">&gt;&lt;/script&gt;</span></pre>
 							<span>app.js</span>
 							<pre>angular.module(<span class="s1">'yourApp'</span>, [<span class="s1">'sy.tabs'</span>]);</pre>
-							<p>Now you can use syTabs in your HTML. To know how, go to <sy-tab-link pane="2"></sy-tab-link>.</p>
+							<p>Now you can use syTabs in your HTML. To know how, go to <sy-pane-link pane="2"></sy-pane-link>.</p>
 						</sy-pane>
 						<sy-pane title="Usage">
 							<p>To use syTabs, insert something like this in your HTML:</p>
@@ -152,17 +148,27 @@
   <span class="nl">z-index</span>: <span class="m">0</span>;
 }</pre>
 							<p>And now, the Party can begin.<br/>You should see something like this tabbed element.</p>
-							<p>Have a look at other <sy-tab-link pane="3"></sy-tab-link>.</p>
+							<p>Have a look at other <sy-pane-link pane="3"></sy-pane-link>.</p>
 						</sy-pane>
-						<sy-pane title="Features">
-							<p>There is a little feature, that i don't wanna deprive: <b>syTabLink</b>.</p>
+						<sy-pane title="Features" icon="glyphicon glyphicon-star">
+							<h4>Icons</h4>
+							<p>You can use icons in the tabs too. Just add the "icon"-attribute to the pane like:</p>
+							<pre><span class="nt">&lt;sy-tabs&gt;</span>
+  <span class="nt">&lt;sy-pane</span> <span class="na">title=</span><span class="s">"Pane 1"</span> <span class="na">icon=</span><span class="s">"gylphicon glyphicon-star"</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/sy-pane&gt;</span>
+  ...
+<span class="nt">&lt;/sy-tabs&gt;</span></pre>
+							<br/>
+							<h4>syPaneLink</h4>
+							<p>There is a little feature, that i don't wanna deprive: <b>syPaneLink</b>.</p>
 							<p>With this directive you can set links anywhere in your panes and go to another pane. Just like magic.</p>
 							<p>To implement these links add something like this to your HTML:</p>
 							<pre><span class="nt">&lt;sy-tabs&gt;</span>
   <span class="nt">&lt;sy-pane</span> <span class="na">title=</span><span class="s">"Pane 1"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;p&gt;</span>
       ...
-      <span class="nt">&lt;sy-tab-link</span> <span class="na">pane=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;sy-pane-link</span> <span class="na">pane=</span><span class="s">"1"</span><span class="nt">&gt;</span>
       ...
     <span class="nt">&lt;/p&gt;</span>
   <span class="nt">&lt;/sy-pane&gt;</span>
@@ -222,9 +228,15 @@
 										<td>'Pane'</td>
 										<td>Set the title for this pane.</td>
 									</tr>
+									<tr>
+										<td>icon</td>
+										<td>string</td>
+										<td>none</td>
+										<td>Set the icon next to the title of this pane</td>
+									</tr>
 								</tbody>
 							</table>
-							<h4>sy-tab-link</h4>
+							<h4>sy-pane-link</h4>
 							<table class="table table-bordered table-striped">
 								<thead>
 									<th>Name</th>
@@ -249,10 +261,20 @@
 			</div>
 		</div>
 
-		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
 
 		<script src="sy-tabs.js"></script>
-		<script>angular.module('syTabsDemo', ['sy.tabs']);</script>
+		<script>
+			angular.module('syTabsDemo', ['sy.tabs'])
+			.controller('demoCtrl', ['$scope', function($scope) {
+				$scope.demo = {
+					animated: true,
+					justified: true,
+					scrollable: true,
+					scrollableHeight: 400
+				};
+			}]);
+		</script>
 	</body>
 
 </html>
