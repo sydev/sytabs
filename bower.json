@@ -1,0 +1,29 @@
+{
+  "name": "sytabs",
+  "description": "syTabs is a simple and lightweight [AngularJs] (http://angularjs.org/) tab directive working with [Bootstrap](http://getbootstrap.com)",
+  "main": "dist/sytabs.js",
+  "authors": [
+    "Dominik Winter <dominik.winter92@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "ng",
+    "tabs",
+    "tabbed",
+    "directive",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/sydev/sytabs",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}

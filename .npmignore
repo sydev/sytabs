@@ -2,3 +2,5 @@ demo/
 src/
 
 *.log
+
+bower_components/
