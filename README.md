@@ -1,6 +1,6 @@
 # syTabs
 
-syTabs is a simple and lightweight [angularjs](http://angularjs.org/) tab directive working with [bootstrap](http://getbootstrap.com)
+syTabs is a simple and lightweight [angular](http://angularjs.org) tab directive working with [bootstrap](http://getbootstrap.com)
 
 ## Installation
 
