@@ -1,31 +1,34 @@
-# [syTabs] (http://sydev.github.io/sytabs)
+# syTabs
 
-syTabs is a simple and lightweight [AngularJs] (http://angularjs.org/) tab directive working with [Bootstrap](http://getbootstrap.com)
-
-## Demo
-
-Do you want to see this directive in action? Click [here] (http://sydev.github.io/sytabs)
+syTabs is a simple and lightweight [angularjs](http://angularjs.org/) tab directive working with [bootstrap](http://getbootstrap.com)
 
 ## Installation
 
-Installation is easy as syTabs has minimal dependencies - only [AngularJs] (http://angularjs.org/) and [Bootstrap´s CSS] (http://getbootstrap.com) are required.
-After downloading dependencies (or better yet, referencing them from your favourite CDN) you need to download the actual version of this project.
+**npm**
 
-When you are done downloading all the dependencies and project files the only remaining part is to add dependencies on the `sy.tabs` AngularJS module:
-
-HTML:
-```html
-<script src="path/to/sy-tabs.js"></script>
+```
+$ npm install --save sytabs
 ```
 
-JS:
-```javascript
-angular.module('myModule', ['sy.tabs']);
+**bower**
+
 ```
+$ bower install --save sytabs
+```
+
+**manually**
+
+```
+$ git clone https://github.com/sydev/sytabs.git
+```
+
+Or simply [download]() the latest release.
+
 
 ## Usage
 
-To use syTabs, insert something like this in your HTML:
+**HTML**
+
 ```html
 <sy-tabs>
   <sy-pane title="Pane 1">
@@ -36,9 +39,19 @@ To use syTabs, insert something like this in your HTML:
   </sy-pane>
   ...
 </sy-tabs>
+
+<script src="path/to/sytabs.js"></script>
 ```
 
-For optimal experience with this directive you should add following rules to your CSS:
+**JavaScript**
+
+```javascript
+angular.module('myModule', ['sy.tabs']);
+```
+
+
+For an optimal experience with this directive you should add following styles to your **CSS**
+
 ```css
 .tab-content {
   position: relative;
@@ -56,7 +69,7 @@ For optimal experience with this directive you should add following rules to you
 
 ## Features
 
-#### Icons 
+#### Icons
 
 You can use icons in the tabs too. Just add the "icon"-attribute to the pane like:
 ```html
@@ -68,13 +81,14 @@ You can use icons in the tabs too. Just add the "icon"-attribute to the pane lik
 </sy-tabs>
 ```
 
-#### syPaneLink
+
+#### sy-pane-link
 
 There is a little feature, that i don't wanna deprive: syPaneLink.
 
 With this directive you can set links anywhere in your panes and go to another pane. Just like magic.
 
-To implement these links add something like this to your HTML:
+To implement these links add something like this to your **HTML**:
 ```html
 <sy-tabs>
   <sy-pane title="Pane 1">
@@ -89,8 +103,8 @@ To implement these links add something like this to your HTML:
 ```
 
 The value of the "pane"-attribute is the zero-based-index of all panes. So with "1" we shall go to "Pane 2".
-
 You can set any pane-index as value, so you can also go back or skip two panes, no problem.
+
 
 ## Options
 
@@ -173,6 +187,7 @@ You can set any pane-index as value, so you can also go back or skip two panes, 
 </table>
 
 
-## Support
+## Changelog
 
-If there are any issues please contact me on my website [sydev.de] (https://sydev.de)
+- 1.0
+  - Initial release
