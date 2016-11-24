@@ -15,7 +15,7 @@
     "bootstrap"
   ],
   "homepage": "https://github.com/sydev/sytabs",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
