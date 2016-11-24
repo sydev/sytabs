@@ -144,6 +144,7 @@ You can set any pane-index as value, so you can also go back or skip two panes, 
   </tbody>
 </table>
 
+
 ####sy-pane
 <table class="table table-bordered table-striped">
   <thead>
@@ -167,6 +168,7 @@ You can set any pane-index as value, so you can also go back or skip two panes, 
     </tr>
   </tbody>
 </table>
+
 
 #### sy-pane-link
 <table class="table table-bordered table-striped">
